@@ -1,4 +1,5 @@
 // Copyright 2021 GHA Test Team
+
 #include "TimedDoor.h"
 
 #include <stdexcept>
@@ -6,8 +7,7 @@
 #include <chrono>
 
 DoorTimerAdapter::DoorTimerAdapter(TimedDoor& doorRef)
-  : door(doorRef) {
-}
+  : door(doorRef) {}
 
 void DoorTimerAdapter::Timeout() {
   door.throwState();

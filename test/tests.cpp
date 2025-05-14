@@ -2,10 +2,12 @@
 
 #include <gtest/gtest.h>
 #include <gmock/gmock.h>
+
 #include <cstdint>
 #include <thread>
 #include <chrono>
 #include <memory>
+
 #include "TimedDoor.h"
 
 class MockThis : public TimerClient {
@@ -89,6 +91,7 @@ TEST_F(TimedDoorTest, MultipleLocksAndUnlocks) {
   EXPECT_TRUE(door.isDoorOpened());
   door.lock();
   EXPECT_FALSE(door.isDoorOpened());
+
   door.unlock();
   EXPECT_TRUE(door.isDoorOpened());
   door.lock();
@@ -96,7 +99,7 @@ TEST_F(TimedDoorTest, MultipleLocksAndUnlocks) {
 }
 
 TEST_F(TimedDoorTest, MultipleUnlockLockSequence) {
-  for (int i = 0; i < 3; i++) {
+  for (int i = 0; i < 3; ++i) {
     door.unlock();
     EXPECT_TRUE(door.isDoorOpened());
     door.lock();
